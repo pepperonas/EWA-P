@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$USER_HOME$/Google Drive/study/ewa/16_17_ws/EWA-P/.tmp" />
+      <excludeFolder url="file://$USER_HOME$/Google Drive/study/ewa/16_17_ws/EWA-P/temp" />
+      <excludeFolder url="file://$USER_HOME$/Google Drive/study/ewa/16_17_ws/EWA-P/tmp" />
+      <excludeFolder url="file://$USER_HOME$/Google Drive/study/ewa/16_17_ws/prak1/.tmp" />
+      <excludeFolder url="file://$USER_HOME$/Google Drive/study/ewa/16_17_ws/prak1/temp" />
+      <excludeFolder url="file://$USER_HOME$/Google Drive/study/ewa/16_17_ws/prak1/tmp" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

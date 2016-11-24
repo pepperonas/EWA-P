@@ -1,0 +1,23 @@
+body {
+    background-color: lightgrey;
+    padding: 8px;
+    width: 100%;
+    max-width: 930px;
+}
+
+h1 {
+    color: navy;
+    margin-left: 20px;
+}
+
+.table-driver {
+    padding: 10px;
+}
+
+.input-order {
+    margin-top: 2px;
+}
+
+.btn-danger {
+    margin-top: 2px;
+}

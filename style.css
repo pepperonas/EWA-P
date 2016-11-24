@@ -1,0 +1,37 @@
+body {
+    background-color: lightblue;
+    padding: 8px;
+    width: 100%;
+    max-width: 930px;
+}
+
+h1 {
+    color: navy;
+    margin-left: 20px;
+}
+
+.table-driver {
+    padding: 10px;
+}
+
+.input-order {
+    margin-top: 2px;
+}
+
+.btn-danger {
+    margin-top: 2px;
+}
+
+.select-card {
+    width: 30%;
+}
+
+.price-total {
+    font-family: "Helvetica Neue", "Helvetica Neue", serif;
+    font-size: large;
+}
+
+.address-info {
+    font-family: "Helvetica Neue", "Helvetica Neue", serif;
+    font-size: large;
+}
