@@ -24,14 +24,14 @@
 <div>
     <nav>
         <ul>
-            <a href="bestellung.html" class="btn btn-danger btn-lg"
+            <a href="bestellung.php" class="btn btn-danger btn-lg"
                role="button">Neue
                 Bestellung</a>
-            <a href="fahrer.html" class="btn btn-danger btn-lg"
+            <a href="fahrer.php" class="btn btn-danger btn-lg"
                role="button">Fahrer</a>
-            <a href="bäcker.html" class="btn btn-danger btn-lg"
+            <a href="bäcker.php" class="btn btn-danger btn-lg"
                role="button">Bäcker</a>
-            <a href="kunde.html" class="btn btn-danger btn-lg"
+            <a href="kunde.php" class="btn btn-danger btn-lg"
                role="button">Kunde</a>
 
 
@@ -45,9 +45,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<!-- Use downloaded version of Bootstrap -->
-<script src="js/bootstrap.min.js"></script>
-
-
 </body>
+
 </html>

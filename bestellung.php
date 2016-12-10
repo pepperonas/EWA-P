@@ -10,12 +10,19 @@
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
+    <script src="js/jquery-3.1.1.js"></script>
+
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <title>Bestellung</title>
 </head>
 
-<body onload="calculateTotal()">
+<?php
+include('/Applications/XAMPP/htdocs/EWA-P/actions/db/database_helper.php');
+createDb();
+?>
+
+<body onload="calculateTotal(), getSource()">
 
 
 <header>
@@ -70,10 +77,10 @@
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 document.getElementById("address_info").innerHTML =
-                        xmlhttp.responseText;
+                    xmlhttp.responseText;
             } else {
                 document.getElementById("address_info").innerHTML =
-                        'Warte auf Antwort vom Server';
+                    'Warte auf Antwort vom Server';
             }
         };
 
@@ -81,9 +88,9 @@
         console.log("address=" + address);
 
         xmlhttp.open("GET",
-                "http://localhost/EWA-P/actions/bestellung.php?address=" +
-                address,
-                true);
+            "http://localhost/EWA-P/actions/bestellung.php?address=" +
+            address,
+            true);
         xmlhttp.send(null);
     }
 
@@ -129,7 +136,63 @@
 
         }
         document.getElementById("price_info").innerHTML =
-                'Gesamt: ' + total.toFixed(2).toString() + '€';
+            'Gesamt: ' + total.toFixed(2).toString() + '€';
+    }
+
+    function pushInDb() {
+        console.log("pushInDb()");
+
+        // customer
+        var firstname = document.getElementById("input_customer_name").value;
+        var lastname = document.getElementById("input_customer_lastname").value;
+        var zip = document.getElementById("input_address_zip").value;
+        var town = document.getElementById("input_address_town").value;
+        var street = document.getElementById("input_address_street").value;
+        var house_number = document.getElementById("input_address_house_number").value;
+
+        // pizza
+        var last_order = 0;
+        var type = "-unset-";
+        var price = -1;
+
+        function callback(data) {
+            console.log('last_order=' + data);
+            last_order = data;
+
+            // loop through cart and store pizzas in db
+            for (var i = 0; i < (document.getElementById("cart").length); i++) {
+                console.log(document.getElementById("cart")[i].value);
+                type = document.getElementById("cart")[i].value;
+                switch (type) {
+                    case 'Margherita':
+                        price = 4.00;
+                        break;
+                    case 'Salami':
+                        price = 5.50;
+                        break;
+                    case 'Hawaii':
+                        price = 5.00;
+                        break;
+                }
+                $.post('actions/db/addListing.php', {
+                    last_order: last_order,
+                    type: type,
+                    state: 0,
+                    price: price
+                });
+            }
+        }
+
+        $.post('actions/db/addOrder.php', {
+            firstname: firstname,
+            lastname: lastname,
+            zip: zip,
+            town: town,
+            street: street,
+            house_number: house_number
+        }, function (data) {
+            callback(data);
+        });
     }
 
 </script>
@@ -137,27 +200,28 @@
 
 <br>
 <br>
-<div class="price-total">
-    <p id="price_info"></p>
-</div>
-<div class="address-info">
-    <p id="address_info"></p>
-</div>
 
-<form id="order_id" action="http://www.fbi.h-da.de/cgi-bin/Echo.pl"
-      method="get">
+<form id="order_id" action="bestellung.php"
+      method="post">
+
+    <div class="price-total">
+        <p id="price_info"></p>
+    </div>
+    <div class="address-info">
+        <p id="address_info"></p>
+    </div>
+
     Vorname:<br>
     <input id="input_customer_name" type="text" name="firstname" value="Mike"
            autofocus>
     <br>
     Nachname:<br>
-    <input id="input_customer_surname" class="input-order" type="text"
+    <input id="input_customer_lastname" class="input-order" type="text"
            name="lastname" value="Rophone">
     <br>
     Straße/Hausnummer:<br>
     <input id="input_address_street" oninput="getSource()" type="text"
-           name="street"
-           value="">
+           name="street" value="">
     <input id="input_address_house_number" class="input-order" type="text"
            name="house_number" value="">
     <br>
@@ -166,24 +230,25 @@
     <input id="input_address_town" class="input-order" type="text" name="town"
            value="">
     <br><br>
-    <button class="btn btn-danger btn-lg" role="button" type="submit"
-            onclick="document.forms['order_id'].submit();"
+    <!--  NOTE: type="input" not working, but type="button" working  -->
+    <button class="btn btn-danger btn-lg" role="button" type="button"
+            onclick="pushInDb()"
             value="Bestellen">Bestellen
     </button>
+    <!--            onclick="document.forms['order_id'].submit();"-->
     <button class="btn btn-danger btn-lg" role="button" type="reset"
             value="Reset" onclick="getSource()">Zurücksetzen
     </button>
+
 </form>
 
 
 <footer>
-    <a href="index.html">zurück</a>
+    <a href="index.php">zurück</a>
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<!-- Use downloaded version of Bootstrap -->
-<script src="js/bootstrap.min.js"></script>
-
 </body>
+
 </html>

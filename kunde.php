@@ -80,20 +80,17 @@
 
 <nav>
     <ul>
-        <a href="bestellung.html" class="btn btn-danger btn-lg" role="button">Neue
+        <a href="bestellung.php" class="btn btn-danger btn-lg" role="button">Neue
             Bestellung</a>
     </ul>
 </nav>
 
 <footer>
-    <a href="index.html">zurück</a>
+    <a href="index.php">zurück</a>
 </footer>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<!-- Use downloaded version of Bootstrap -->
-<script src="js/bootstrap.min.js"></script>
-
 </body>
+
 </html>

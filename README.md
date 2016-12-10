@@ -8,6 +8,8 @@
 * Remove selected item
 * Remove all items
 * Check address (if _input_address_street_ changed, ```bestellung.php``` gets called)
+* Database 
+* Show summary
 
 ##Developed By
 * Sebastian Grätz
